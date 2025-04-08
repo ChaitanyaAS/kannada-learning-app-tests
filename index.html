@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kannada Kalike! (ಕನ್ನಡ ಕಲಿಕೆ)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Section -->
+        <div class="logo-container">
+            <div class="logo">
+                <img src="image.png" alt="Kannada Kalike Logo" class="logo-image">
+                <div class="logo-text">
+                    <p class="subtitle">(ಕನ್ನಡ ಕಲಿಕೆ - Learn Kannada)</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Authentication Container -->
+        <div id="auth-container" class="auth-container active">
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active" onsubmit="handleLogin(); return false;">
+                <h2>Welcome Back!</h2>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="your@email.com" required>
+                    <div class="error-message" id="login-email-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                    <div class="error-message" id="login-password-error"></div>
+                </div>
+                <button type="submit" class="auth-btn">Login</button>
+                <div class="switch-auth">
+                    Don't have an account? <a onclick="showRegister()">Register</a>
+                </div>
+            </form>
+            
+            <!-- Register Form -->
+            <form id="register-form" class="auth-form" onsubmit="handleRegister(); return false;">
+                <h2>Create Account</h2>
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" placeholder="Your Name" required>
+                    <div class="error-message" id="register-name-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" placeholder="your@email.com" required>
+                    <div class="error-message" id="register-email-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" placeholder="••••••••" required>
+                    <div class="error-message" id="register-password-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm">Confirm Password</label>
+                    <input type="password" id="register-confirm" placeholder="••••••••" required>
+                    <div class="error-message" id="register-confirm-error"></div>
+                </div>
+                <button type="submit" class="auth-btn">Register</button>
+                <div class="switch-auth">
+                    Already have an account? <a onclick="showLogin()">Login</a>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Game Container -->
+        <div id="game-container" class="game-container">
+            <div class="game-header">
+                <div class="game-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="points">0</div>
+                        <div class="stat-label">Points</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="streak">0</div>
+                        <div class="stat-label">Day Streak</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="level">1</div>
+                        <div class="stat-label">Level</div>
+                    </div>
+                </div>
+                
+                <div class="user-menu">
+                    <button class="btn btn-icon" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <div class="user-info">
+                            <div class="user-name" id="user-name">Guest</div>
+                            <div class="user-email" id="user-email">guest@example.com</div>
+                        </div>
+                        <button class="dropdown-item" onclick="showProfile()">
+                            <i class="fas fa-user-edit"></i> Profile
+                        </button>
+                        <button class="dropdown-item" onclick="showCultureCorner()">
+                            <i class="fas fa-landmark"></i> Culture Corner
+                        </button>
+                        <button class="dropdown-item" onclick="showLeaderboard()">
+                            <i class="fas fa-trophy"></i> Leaderboard
+                        </button>
+                        <button class="dropdown-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+                <div class="progress-text" id="progress-text">0/100 XP</div>
+            </div>
+            
+            <!-- Word of the Day -->
+            <div class="word-of-day" id="word-of-day">
+                <div class="wotd-header">
+                    <i class="fas fa-star"></i> Word of the Day
+                </div>
+                <div class="wotd-content">
+                    <div class="wotd-word" id="wotd-kannada">ನಮಸ್ಕಾರ</div>
+                    <div class="wotd-meaning" id="wotd-english">Hello</div>
+                    <div class="wotd-pronunciation" id="wotd-pronunciation">Namaskāra</div>
+                    <button class="btn-audio" onclick="playWOTD()">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mode-selector">
+                <button class="mode-btn active" onclick="setMode('flashcard')">
+                    <i class="fas fa-layer-group"></i> Flashcards
+                </button>
+                <button class="mode-btn" onclick="setMode('quiz')">
+                    <i class="fas fa-question-circle"></i> Quiz
+                </button>
+                <button class="mode-btn" onclick="setMode('typing')">
+                    <i class="fas fa-keyboard"></i> Typing
+                </button>
+                <button class="mode-btn" onclick="setMode('culture')">
+                    <i class="fas fa-landmark"></i> Culture
+                </button>
+            </div>
+            
+            <!-- Flashcard Mode -->
+            <div id="flashcard-mode" class="game-mode active">
+                <div class="flashcard-container">
+                    <div class="flashcard" onclick="flipCard()">
+                        <div class="flashcard-face flashcard-front" id="card-front">
+                            <span id="card-front-text">Word</span>
+                        </div>
+                        <div class="flashcard-face flashcard-back" id="card-back">
+                            <span id="card-back-text">Translation</span>
+                            <div class="pronunciation" id="card-pronunciation">Pronunciation</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard-nav">
+                    <button class="btn btn-audio" onclick="playCurrentWord()">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button class="btn" onclick="nextCard()">Next Card</button>
+                </div>
+                <div class="word-example" id="word-example"></div>
+            </div>
+            
+            <!-- Quiz Mode -->
+            <div id="quiz-mode" class="game-mode">
+                <div class="quiz-question" id="quiz-question">What is the Kannada word for "Hello"?</div>
+                <div class="quiz-options" id="quiz-options">
+                    <button class="quiz-option" onclick="checkAnswer(0)">Option 1</button>
+                    <button class="quiz-option" onclick="checkAnswer(1)">Option 2</button>
+                    <button class="quiz-option" onclick="checkAnswer(2)">Option 3</button>
+                    <button class="quiz-option" onclick="checkAnswer(3)">Option 4</button>
+                </div>
+                <div class="quiz-result" id="quiz-result"></div>
+                <div class="quiz-explanation" id="quiz-explanation"></div>
+            </div>
+            
+            <!-- Typing Mode -->
+            <div id="typing-mode" class="game-mode">
+                <div class="typing-prompt" id="typing-prompt">Type the Kannada word for "Hello":</div>
+                <div class="typing-input-container">
+                    <input type="text" id="typing-answer" class="typing-input" placeholder="Type here..." autocomplete="off">
+                </div>
+                
+                <div class="typing-buttons">
+                    <button class="btn" onclick="checkTyping()">Check</button>
+                    <button class="btn btn-secondary" onclick="toggleKeyboard()">
+                        <i class="fas fa-keyboard"></i> Toggle Keyboard
+                    </button>
+                    <button class="btn btn-audio" onclick="playCurrentWord()">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+                
+                <div class="kannada-keyboard" id="kannada-keyboard">
+                    <!-- Keyboard rows will be generated by JavaScript -->
+                </div>
+                
+                <div class="typing-result" id="typing-result"></div>
+            </div>
+            
+            <!-- Culture Mode -->
+            <div id="culture-mode" class="game-mode">
+                <div class="culture-header">
+                    <h2><i class="fas fa-landmark"></i> Culture Corner</h2>
+                </div>
+                <div class="culture-content">
+                    <div class="culture-card active" id="culture-card-1">
+                        <div class="culture-title">Dasara Festival</div>
+                        <img src="dasara.jpg" alt="Dasara Festival" class="culture-image">
+                        <div class="culture-text">
+                            Dasara is Karnataka's state festival celebrated for 10 days. The Mysuru Dasara is particularly famous with its grand procession of decorated elephants.
+                        </div>
+                    </div>
+                    <div class="culture-card" id="culture-card-2">
+                        <div class="culture-title">Kannada Proverbs</div>
+                        <div class="culture-text">
+                            <p><strong>"ಅಕ್ಕಸಾಲಿಗನ ಮಗ ಅಕ್ಕಸಾಲಿಗ"</strong> (Akka sāligana maga akka sāliga) - "The goldsmith's son becomes a goldsmith" (Like father, like son)</p>
+                            <p><strong>"ಹಸುವಿನ ಹಿಂದೆ ಹೋದರೆ ಹಾಲು ಸಿಗುತ್ತೆ, ಹುಲಿಯ ಹಿಂದೆ ಹೋದರೆ ಹಾಳು ಸಿಗುತ್ತೆ"</strong> (Follow a cow to get milk, follow a tiger to get destroyed)</p>
+                        </div>
+                    </div>
+                    <div class="culture-nav">
+                        <button class="btn" onclick="prevCultureCard()">Previous</button>
+                        <button class="btn" onclick="nextCultureCard()">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Profile Modal -->
+        <div class="modal" id="profile-modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('profile-modal')">&times;</span>
+                <h2>User Profile</h2>
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="profile-details">
+                        <div><strong>Name:</strong> <span id="profile-name"></span></div>
+                        <div><strong>Email:</strong> <span id="profile-email"></span></div>
+                        <div><strong>Member since:</strong> <span id="profile-joined"></span></div>
+                    </div>
+                </div>
+                <div class="profile-stats">
+                    <h3>Your Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-number" id="profile-level">1</div>
+                            <div class="stat-label">Level</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="profile-points">0</div>
+                            <div class="stat-label">Points</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="profile-streak">0</div>
+                            <div class="stat-label">Day Streak</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="profile-words">0</div>
+                            <div class="stat-label">Words Learned</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-badges">
+                    <h3>Your Badges</h3>
+                    <div class="badges-container" id="badges-container">
+                        <!-- Badges will be added by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Leaderboard Modal -->
+        <div class="modal" id="leaderboard-modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('leaderboard-modal')">&times;</span>
+                <h2>Leaderboard</h2>
+                <div class="leaderboard-tabs">
+                    <button class="tab-btn active" onclick="showLeaderboardTab('all')">All Time</button>
+                    <button class="tab-btn" onclick="showLeaderboardTab('monthly')">This Month</button>
+                    <button class="tab-btn" onclick="showLeaderboardTab('weekly')">This Week</button>
+                </div>
+                <div class="leaderboard-content">
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Level</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <!-- Leaderboard data will be added by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="word-audio" preload="auto"></audio>
+    <audio id="correct-sound" src="correct.mp3" preload="auto"></audio>
+    <audio id="wrong-sound" src="wrong.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
