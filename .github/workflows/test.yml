@@ -3,31 +3,26 @@ name: Node.js CI
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      xvfb:
-        image: jorgemoralespou/ghostdriver:2.1.0
-        options: --shm-size=2g
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run TestCafe tests
-      run: testcafe chrome:headless tests/ -c 2
+      - name: Run TestCafe tests
+        run: testcafe chrome:headless tests/ -c 2
