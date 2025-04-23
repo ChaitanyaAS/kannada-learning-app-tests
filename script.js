@@ -1092,5 +1092,12 @@ window.onclick = function(event) {
     // Close user dropdown when clicking outside
     if (!event.target.closest('.user-menu') && !event.target.closest('.user-dropdown')) {
         document.getElementById('user-dropdown').classList.remove('active');
-    }
+    } 
+}
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = {
+        words,
+        cultureContent,
+        badges
+    };
 }
