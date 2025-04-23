@@ -1,28 +1,33 @@
-name: TestCafe Tests
+name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - master
   pull_request:
-    branches: [ main ]
+    branches:
+      - master
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      xvfb:
+        image: jorgemoralespou/ghostdriver:2.1.0
+        options: --shm-size=2g
+
     steps:
-    - uses: actions/checkout@v2
-    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
         node-version: '14'
-    
+
     - name: Install dependencies
       run: npm install
-    
-    - name: Install TestCafe
-      run: npm install -g testcafe
-    
-    - name: Run tests
+
+    - name: Run TestCafe tests
       run: testcafe chrome:headless tests/ -c 2
