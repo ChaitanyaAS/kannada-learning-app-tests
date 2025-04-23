@@ -1,31 +1,38 @@
-name: Node.js CI
+name: CI – Jest + TestCafe
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v3
         with:
-          node-version: "14"
+          node-version: '14'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run Jest unit tests
         run: npm test
 
-      - name: Run TestCafe end-to-end tests in the browser
-        run: npx testcafe chrome:headless --test-meta browser tests/ -c 2
+      # If your app needs to be running for E2E:
+      - name: Start the app
+        run: npm start &
+      
+      - name: Wait for server to be ready
+        # Install wait-on in devDependencies: npm install --save-dev wait-on
+        run: npx wait-on http://localhost:3000
+
+      - name: Run TestCafe end-to-end tests
+        # Only pick up files ending in .test.js under tests/
+        run: npx testcafe chrome:headless "tests/**/*.test.js" -c 2
