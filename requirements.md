@@ -1,71 +1,80 @@
-# 📘 SAMPADA Project - Requirements Document
+# 📄 Requirements Document for SAMPADA Project
 
-## Project Overview
-
-**SAMPADA** is a Kannada learning web application aimed at providing an easy and interactive platform for language learners.
-
----
-
-## Functional Requirements (User Stories)
-
-| ID | User Story |
-|----|------------|
-| 1 | As a developer, I want to set up a GitHub repository so that the team can collaborate effectively. |
-| 2 | As a developer, I want to set up GitHub Actions so the site automatically builds and deploys on push. |
-| 3 | As a user, I want an About page that introduces the team and project goal. |
-| 4 | As a user, I want a blog page to view all project updates and progress. |
+## 🧩 Project Overview
+SAMPADA is a web-based application focused on promoting Kannada learning through interactive content. The application will include key pages such as an About page, blog updates, and automated CI/CD integration for streamlined development.
 
 ---
 
-##  Scrum Roles
+## 👥 Scrum Team Roles
 
-| Role | Name |
-|------|------|
-| Product Owner | Chaitanya A S |
-| Scrum Master | Chaitanya A S |
-| Development Team | Chaitanya A S and Collaborators |
-
----
-
-##  Scrum Events and Sprint Planning
-
-| Sprint | Duration | Tasks Covered |
-|--------|----------|----------------|
-| Sprint 1 | 5 Days | Repository setup, GitHub Actions |
-| Sprint 2 | 5 Days | About page creation, Blog page layout |
-
-**Daily Standups:** Conducted asynchronously via GitHub Issues comments.
-
-**Sprint Review & Retrospective:** Observed by task completion in the GitHub Project board and reflection in comments.
+| Role         | Name (placeholder)       | Responsibility                                         |
+|--------------|--------------------------|--------------------------------------------------------|
+| Product Owner | Chaitanya AS             | Defines the product vision, prioritizes the backlog    |
+| Scrum Master | [Your Name]              | Facilitates meetings and ensures Scrum processes       |
+| Developer(s) | Team Member(s)           | Build and test the features based on sprint goals      |
 
 ---
 
-##  GitHub Workflow
+## 🧾 Sprint Planning
 
-###  GitHub Issues
-All features and improvements are added as **Issues** in user story format.
+###  Sprint 1: Project Initialization & Setup
+-  Set up GitHub repository
+-  Initialize project with README and Git ignore
+-  Create basic folder structure
+-  Set up GitHub Project board and Issues
 
-###  Project Board
-A **Scrum-style board** is used with these columns:
-- **To Do** – Tasks that haven’t been started.
-- **In Progress** – Tasks currently under development.
-- **Done** – Completed tasks.
-
-###  Labels & Assignees
-- Issues labeled by sprint (e.g., `Sprint 1`, `Sprint 2`)
-- Issues are assigned to contributors for responsibility tracking.
+**User Stories:**
+- `#1`: _As a developer, I want to set up the GitHub repository so we can collaborate on code._
+- `#2`: _As a team, we want to create a shared board for tracking progress._
 
 ---
 
-##  Screenshots (To Include Separately)
+### 🛠 Sprint 2: CI/CD & About Page
+-  Set up GitHub Actions for CI/CD
+-  Create an “About” page
+-  Add initial UI components
 
-1. GitHub Issues showing user stories.
-2. Project board with tasks in different stages (To Do, In Progress, Done).
-3. Chart or table showing task completion across sprints.
+**User Stories:**
+- `#3`: _As a developer, I want to use GitHub Actions so that the site automatically builds and deploys on push._
+- `#4`: _As a user, I want an About page that introduces the team and project goal._
 
 ---
 
-## 🏁 Final Notes
+### 📄 Sprint 3: Blog Page and Styling
+-  Build blog page layout
+-  Add styling using Tailwind/Bootstrap
+-  Create placeholders for future blog posts
 
-This document serves as the primary requirements and progress planning file for the SAMPADA project. The use of GitHub Projects and Issues simulates a real-world Agile Scrum workflow.
+**User Stories:**
+- `#5`: _As a user, I want a blog page to view all project updates and progress._
+- `#6`: _As a developer, I want to add CSS styles for better user experience._
+
+---
+
+### 🧪 Sprint 4: Testing & Documentation
+- Write tests for key components
+-  Finalize documentation (`README.md`, `requirements.md`)
+-  Capture screenshots of board & sprint progress
+
+**User Stories:**
+- `#7`: _As a developer, I want to write tests to verify the application works correctly._
+- `#8`: _As a student, I want documentation that clearly describes project goals and usage._
+
+---
+
+## 📆 Scrum Ceremonies
+
+| Ceremony           | Description |
+|--------------------|-------------|
+| Sprint Planning     | Held at the start of each sprint to discuss user stories and plan workload. |
+| Daily Standups      | Short check-in meetings to track progress (can be async via comments). |
+| Sprint Review       | Team reviews completed work and demonstrates it. |
+| Sprint Retrospective| Discuss what went well, challenges faced, and how to improve. |
+
+---
+
+## 📌 Notes
+- All user stories are documented in GitHub Issues.
+- GitHub Project board reflects sprint statuses (To-do, In Progress, Done).
+- Screenshots of sprint progress and issue tracking are attached in the final report.
 
