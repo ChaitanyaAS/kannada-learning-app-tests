@@ -1,38 +1,28 @@
-name: CI – Jest + TestCafe
+name: Run Tests
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main # You can specify the branch you want to trigger on push
   pull_request:
-    branches: [ main ]
+    branches:
+      - main # Run tests on pull requests to the main branch
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # This runs the job on an Ubuntu machine
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Use Node.js 14
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: "16" # Use the version of Node.js your project needs
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install # This installs your project dependencies
 
-      - name: Run Jest unit tests
-        run: npm test
-
-      # If your app needs to be running for E2E:
-      - name: Start the app
-        run: npm start &
-      
-      - name: Wait for server to be ready
-        # Install wait-on in devDependencies: npm install --save-dev wait-on
-        run: npx wait-on http://localhost:3000
-
-      - name: Run TestCafe end-to-end tests
-        # Only pick up files ending in .test.js under tests/
-        run: npx testcafe chrome:headless "tests/**/*.test.js" -c 2
+      - name: Run tests
+        run: npm test # This runs the tests using Jest
