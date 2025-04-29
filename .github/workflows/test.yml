@@ -1,28 +1,32 @@
-name: Run Tests
+name: Node.js CI
 
 on:
   push:
-    branches:
-      - main # You can specify the branch you want to trigger on push
+    branches: 
+      - main
   pull_request:
     branches:
-      - main # Run tests on pull requests to the main branch
+      - main
 
 jobs:
   test:
-    runs-on: ubuntu-latest # This runs the job on an Ubuntu machine
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: "16" # Use the version of Node.js your project needs
+          node-version: '14'  # Or any version of Node.js you are using
 
       - name: Install dependencies
-        run: npm install # This installs your project dependencies
+        run: npm install
 
       - name: Run tests
-        run: npm test # This runs the tests using Jest
+        run: npm test
+
+      - name: Check permissions (if necessary)
+        run: |
+          sudo chmod -R 755 node_modules/.bin/
+          sudo chmod +x ./node_modules/.bin/jest
