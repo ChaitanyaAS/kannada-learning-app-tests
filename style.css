@@ -22,8 +22,6 @@
 
 body {
     font-family: 'Poppins', 'Noto Sans Kannada', sans-serif;
-    background: url('Screenshot\ 2025-04-02\ 222900.png') no-repeat center center fixed;
-    background-size: cover;
     margin: 0;
     padding: 0;
     color: var(--dark);
